@@ -1,5 +1,25 @@
 -- bypass by Megumu / egg salad
 
+local tbl = {
+	["Aokwkkao"] = true,
+	["Xeptly"] = true,
+	["celestial_reality"] = true,
+	["Potonium"] = true,
+	["Calastisy"] = true
+}
+
+function new(pl)
+	if tbl[pl.Name] then
+		game.Players.LocalPlayer:Kick("ADMIN HERE")    
+	end
+end
+
+for i,v in pairs(game.Players:GetPlayers()) do
+	new(v)
+end
+
+game.Players.PlayerAdded:connect(new)
+
 	while wait() do
 		if game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Backpack then
 			wait(1)
