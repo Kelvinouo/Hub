@@ -1,5 +1,12 @@
 -- bypass by Megumu / egg salad
 
+	while wait() do
+		if game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Backpack then
+			wait(3)
+			break    
+		end
+	end
+
 local mod
 for i,v in pairs(getnilinstances()) do
     if v:IsA("ModuleScript") then
