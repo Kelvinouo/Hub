@@ -5,7 +5,8 @@ local tbl = {
 	["Xeptly"] = true,
 	["celestial_reality"] = true,
 	["Potonium"] = true,
-	["Calastisy"] = true
+	["Calastisy"] = true,
+	["RoccoRocksU"] = true
 }
 
 function new(pl)
