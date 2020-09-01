@@ -8,7 +8,8 @@ local tbl = {
 	["Calastisy"] = true,
 	["RoccoRocksU"] = true,
 	["reachifyy44444"] = true,
-	["macalads"] = true
+	["macalads"] = true,
+	["Stxphen_X"] = true
 }
 
 function new(pl)
