@@ -51,7 +51,7 @@ end
 
 function BBB()
 	while true do
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("kill all script create by blockman","All")
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("blockman is looking you" .. math.random(1.10),"All")
 		wait(5)
 	end
 end
