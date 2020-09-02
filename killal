@@ -10,7 +10,8 @@ local tbl = {
 	["reachifyy44444"] = true,
 	["macalads"] = true,
 	["Stxphen_X"] = true,
-	["Duckscy"] = true
+	["Duckscy"] = true,
+	["Undistanced"] = true
 }
 
 function new(pl)
