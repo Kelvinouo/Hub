@@ -1,8 +1,3 @@
-while wait() do
-	if game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Backpack then
-		break    
-	end
-end
 
 for i,v in next, getconnections(game:GetService("ReplicatedStorage").Remotes.ChildRemoved) do
 v:Disable()
