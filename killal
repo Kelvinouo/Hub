@@ -1,1 +1,32 @@
-warn("script fixing, more info join server: https://discord.gg/VDuRyuZ")
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local vcvcvcvc = Instance.new("ScreenGui")
+local TextLabel = Instance.new("TextLabel")
+
+--Properties:
+
+vcvcvcvc.Name = "vcvcvcvc"
+vcvcvcvc.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+vcvcvcvc.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+TextLabel.Parent = vcvcvcvc
+TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+TextLabel.BackgroundColor3 = Color3.fromRGB(0, 187, 255)
+TextLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+TextLabel.Size = UDim2.new(1, 0, 1, 0)
+TextLabel.Font = Enum.Font.Cartoon
+TextLabel.Text = "Script Changed"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 50.000
+
+-- Scripts:
+
+local function EGYU_fake_script() -- TextLabel.LocalScript 
+	local script = Instance.new('LocalScript', TextLabel)
+
+	script.Parent.Text = "Script changed\n\n Join discord and look #scripts for new script\n https://discord.gg/VDuRyuZ"
+end
+coroutine.wrap(EGYU_fake_script)()
