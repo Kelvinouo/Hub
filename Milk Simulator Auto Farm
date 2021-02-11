@@ -1,0 +1,61 @@
+--[[
+    By Blockman
+]]
+
+-- > Locals
+local a = game.Players.LocalPlayer
+local b = game.ReplicatedStorage.Knit.Services
+local c = b.MilkService.RE.Drink
+local d = b.SellService.RE.Sell
+local e = b.ShopService.RF.BuyAll
+local f = true
+local g = false
+local h = false
+
+-- > UI
+local i = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+local j = i.Load({Title = "By Blockman", Style = 3, SizeX = 300, SizeY = 200, Theme = "Light"})
+local k = j.New({Title = "Main"})
+k.Button(
+    {Text = "Remove Popups", Callback = function()
+            game:GetService("Players").LocalPlayer.PlayerGui.Popups.Enabled = false
+        end}
+)
+k.Toggle(
+    {Text = "Auto Farm", Callback = function(l)
+            f = l
+        end, Enabled = true}
+)
+k.Toggle(
+    {Text = "Auto Buy Milk", Callback = function(l)
+            g = l
+        end}
+)
+k.Toggle(
+    {Text = "Auto Collect Gems", Callback = function(l)
+            h = l
+        end}
+)
+
+-- > Script
+game["RunService"].RenderStepped:Connect(
+    function()
+        if f then
+            for m = 1, 3 do
+                c:FireServer()
+                d:FireServer()
+            end
+        end
+        if g then
+            e:InvokeServer("Milk")
+        end
+    end
+)
+while wait() do
+    if h then
+        for m, n in next, game:GetService("Workspace").Pickups:GetChildren() do
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(n.HumanoidRootPart.Position)
+            wait()
+        end
+    end
+end
