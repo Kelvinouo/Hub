@@ -13,7 +13,6 @@ function kill(mob)
         game:GetService("RunService").Heartbeat:Wait()
         tp(mob.HumanoidRootPart.CFrame + Vector3.new(0,13,0))
         plr.Backpack.Input:FireServer("m1")
-        plr.Backpack.Input:FireServer("e")
         count = count + 0.1
     until mob.Health.Value == 0 or die or count > 25
     if count > 40 then
