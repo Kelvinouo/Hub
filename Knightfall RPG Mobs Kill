@@ -1,8 +1,8 @@
 -- > Locals
 local plr = game.Players.LocalPlayer
 local Swing = game.ReplicatedStorage.Events.SwingValue
+local SwordTouched = game.ReplicatedStorage.Events.SwordTouched
 local ClearHitTable = game.ReplicatedStorage.Events.ClearHitTable
-local Equip = game.ReplicatedStorage.Events.Equip
 local nowmob
 local farm = false 
 local swordname = "Battle Stick"
@@ -16,12 +16,9 @@ function kill(mob)
     repeat
         tp(CFrame.new(mob:WaitForChild("HumanoidRootPart").Position - Vector3.new(0,18,0), Vector3.new(0,100000,0)))
         game:GetService("RunService").Heartbeat:Wait()
-        for i,v in next, getconnections(plr:GetMouse().Button1Down) do
-            v:Fire()
-        end
         for i = 1,10 do
             Swing:FireServer()
-            getsenv(game:GetService("Workspace").wearesosmartinroblox[swordname].SwordScript).SwordTouched(mob:WaitForChild("HumanoidRootPart"))
+            SwordTouched:FireServer(mob:WaitForChild("HumanoidRootPart"), plr.Character:WaitForChild(swordname).Hitbox)
             ClearHitTable:FireServer()
         end
     until mob.Humanoid.Health <= 0 or nowmob == nil or farm == false
