@@ -14,10 +14,7 @@ function kill(mob)
         tp(mob.HumanoidRootPart.CFrame + Vector3.new(0,13,0))
         plr.Backpack.Input:FireServer("m1")
         count = count + 0.1
-    until mob.Health.Value == 0 or die or count > 25
-    if count > 40 then
-        print("[Script] Skipped")
-    end
+    until mob.Health.Value <= 0 or die or count > 25
     if die then
         repeat
             wait()
@@ -26,7 +23,7 @@ function kill(mob)
 end
 
 coroutine.wrap(function()
-    while wait() do
+    while game:GetService("RunService").Heartbeat:Wait() do
         if plr.Character.Humanoid.Health < 1 then
             die = true
         else
@@ -73,6 +70,8 @@ while wait() do
         wait()
     end
 
+    wait()
+
     for i,v in next, game:GetService("Workspace").Items:GetChildren() do
         if v:FindFirstChild("Cost") == nil and v:FindFirstChild("HeartCost") == nil then
             tp(v.CFrame)
@@ -87,6 +86,15 @@ while wait() do
             wait(.5)
             plr.Backpack.Input:FireServer("event", v)
         end
+    end
+
+    for i,v in next, game:GetService("Workspace").Enemy:GetChildren() do
+        kill(v)
+    end
+
+    for i,v in next, game:GetService("Workspace").Touch:GetChildren() do
+        tp(v.CFrame)
+        wait()
     end
 
     if getgenv().autoTpStairs then
