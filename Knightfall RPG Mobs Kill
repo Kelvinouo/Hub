@@ -1,0 +1,94 @@
+-- > Locals
+local plr = game.Players.LocalPlayer
+local Swing = game.ReplicatedStorage.Events.SwingValue
+local ClearHitTable = game.ReplicatedStorage.Events.ClearHitTable
+local Equip = game.ReplicatedStorage.Events.Equip
+local nowmob
+local farm = false 
+local swordname = "Battle Stick"
+
+-- > Functions
+function tp(cframe)
+    plr.Character:WaitForChild("HumanoidRootPart").CFrame = cframe
+end
+
+function kill(mob)
+    repeat
+        tp(CFrame.new(mob:WaitForChild("HumanoidRootPart").Position - Vector3.new(0,18,0), Vector3.new(0,100000,0)))
+        game:GetService("RunService").Heartbeat:Wait()
+        for i,v in next, getconnections(plr:GetMouse().Button1Down) do
+            v:Fire()
+        end
+        for i = 1,10 do
+            Swing:FireServer()
+            getsenv(game:GetService("Workspace").wearesosmartinroblox[swordname].SwordScript).SwordTouched(mob:WaitForChild("HumanoidRootPart"))
+            ClearHitTable:FireServer()
+        end
+    until mob.Humanoid.Health <= 0 or nowmob == nil or farm == false
+    return
+end
+
+function getmob(mob)
+    for i,v in next, game:GetService("Workspace").Creatures:GetChildren() do
+        if v == mob then
+            return true
+        end
+    end
+    return false
+end
+
+coroutine.wrap(function()
+    while game:GetService("RunService").Heartbeat:Wait() do
+        if farm then
+            if nowmob ~= nil then
+                if getmob(nowmob) == false then
+                    nowmob = nil
+                end
+            end
+        end
+    end
+end)()
+
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+
+local UI = Material.Load({
+     Title = "By Blockman",
+     Style = 3,
+     SizeX = 400,
+     SizeY = 125,
+     Theme = "Light"
+})
+
+local Page = UI.New({
+    Title = "Main"
+})
+
+Page.Toggle({
+    Text = "Auto Kill",
+    Callback = function(value)
+        farm = value
+    end,
+    Enabled = false
+})
+
+Page.TextField({
+    Text = "Sword Name",
+    Callback = function(value)
+        swordname = value
+    end
+})
+
+while wait() do
+    if farm == true then
+        for i,v in next, game:GetService("Workspace").Creatures:GetChildren() do
+            if farm then
+                if v:FindFirstChild("Humanoid") ~= nil then
+                    nowmob = v
+                    kill(v)
+                    tp(CFrame.new(235, 41, 75))
+                    wait(0.3)
+                end
+            end
+        end
+    end
+end
