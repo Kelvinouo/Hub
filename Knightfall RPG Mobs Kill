@@ -4,8 +4,8 @@ local Swing = game.ReplicatedStorage.Events.SwingValue
 local SwordTouched = game.ReplicatedStorage.Events.SwordTouched
 local ClearHitTable = game.ReplicatedStorage.Events.ClearHitTable
 local nowmob
-local farm = false 
-local swordname = "Battle Stick"
+local farm = false
+local swordname = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool").Name
 
 -- > Functions
 function tp(cframe)
@@ -52,7 +52,7 @@ local UI = Material.Load({
      Title = "By Blockman",
      Style = 3,
      SizeX = 400,
-     SizeY = 125,
+     SizeY = 80,
      Theme = "Light"
 })
 
@@ -66,13 +66,6 @@ Page.Toggle({
         farm = value
     end,
     Enabled = false
-})
-
-Page.TextField({
-    Text = "Sword Name",
-    Callback = function(value)
-        swordname = value
-    end
 })
 
 while wait() do
