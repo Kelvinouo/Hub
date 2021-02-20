@@ -16,7 +16,7 @@ function kill(mob)
     repeat
         tp(CFrame.new(mob:WaitForChild("HumanoidRootPart").Position - Vector3.new(0,18,0), Vector3.new(0,100000,0)))
         game:GetService("RunService").Heartbeat:Wait()
-        for i = 1,10 do
+        for i = 1,5 do
             Swing:FireServer()
             SwordTouched:FireServer(mob:WaitForChild("HumanoidRootPart"), plr.Character:WaitForChild(swordname).Hitbox)
             ClearHitTable:FireServer()
