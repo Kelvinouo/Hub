@@ -14,11 +14,11 @@ end
 
 function kill(mob)
     repeat
-        tp(CFrame.new(mob:WaitForChild("HumanoidRootPart").Position - Vector3.new(0,18,0), Vector3.new(0,100000,0)))
+        tp(CFrame.new(mob:WaitForChild("HumanoidRootPart",1/0).Position - Vector3.new(0,18,0), Vector3.new(0,100000,0)))
         game:GetService("RunService").Heartbeat:Wait()
         for i = 1,5 do
             Swing:FireServer()
-            SwordTouched:FireServer(mob:WaitForChild("HumanoidRootPart"), plr.Character:WaitForChild(swordname).Hitbox)
+            SwordTouched:FireServer(mob:WaitForChild("HumanoidRootPart",1/0), plr.Character:WaitForChild(swordname).Hitbox)
             ClearHitTable:FireServer()
         end
     until mob.Humanoid.Health <= 0 or nowmob == nil or farm == false
