@@ -1,0 +1,174 @@
+--[[
+   by Blockman <3
+]]
+
+-- > Locals
+local plr = game.Players.LocalPlayer
+local TweenService = game:GetService("TweenService")
+local speeddd = 500
+local nocliptog = false
+local hitbox = {
+    ["Toggle"] = false,
+    ["Size"] = 18,
+    ["Transparency"] = 0.7,
+    ["Color"] = Color3.fromRGB(240, 123, 214)
+}
+local teams = {
+    "Red",
+    "Blue",
+    "Yellow",
+    "Green"
+}
+
+-- > Functions
+function tp(cframe)
+    plr.Character.Humanoid:ChangeState(11)
+    plr.Character.HumanoidRootPart.CFrame = CFrame.new(cframe)
+end
+
+function getbase(color)
+    for i,v in next, game:GetService("Workspace").Visual.Map:GetChildren() do
+        if v.Name ~= 'Lobby' then
+            for i,v2 in next, v:GetChildren() do
+                if string.find(v2.Name, color) then
+                    return v2
+                end
+            end
+        end
+    end
+end
+
+-- > Run
+game:getService("RunService").Heartbeat:Connect(function()
+    if nocliptog then
+        plr.Character.Humanoid:ChangeState(11)
+    end
+    if hitbox.Toggle then
+        for i,v in next, game:GetService('Players'):GetPlayers() do
+            if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                pcall(function()
+                    v.Character.HumanoidRootPart.Size = Vector3.new(hitbox.Size,hitbox.Size,hitbox.Size)
+                    v.Character.HumanoidRootPart.Transparency = hitbox.Transparency
+                    v.Character.HumanoidRootPart.Color = hitbox.Color
+                    v.Character.HumanoidRootPart.CanCollide = false
+                end)
+            end
+            game:getService("RunService").Heartbeat:Wait()
+        end
+    end
+end)
+
+-- > UI Lib
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+
+local UI = Material.Load({
+     Title = "By Blockman",
+     Style = 1,
+     SizeX = 400,
+     SizeY = 240,
+     Theme = "Light"
+})
+
+local Page = UI.New({
+    Title = "char"
+})
+
+local Page2 = UI.New({
+    Title = "Tp Bed"
+})
+
+local Page3 = UI.New({
+    Title = "Tp Base"
+})
+
+local Page4 = UI.New({
+    Title = "Hitbox Expander"
+})
+
+-- > Char
+Page.Toggle({
+    Text = "Noclip",
+    Callback = function(value)
+        nocliptog = value
+    end,
+    Enabled = false
+})
+
+Page.Slider({
+    Text = "WalkSpeed",
+    Callback = function(value)
+        plr.Character.Humanoid.WalkSpeed = value
+    end,
+    Min = 0,
+    Max = 100,
+    Def = 16
+})
+
+Page.Slider({
+    Text = "JumpPower",
+    Callback = function(value)
+        plr.Character.Humanoid.JumpPower = value
+    end,
+    Min = 0,
+    Max = 200,
+    Def = 50
+})
+
+-- > Teleprot
+for i,v in next, teams do
+    Page2.Button({
+        Text = v,
+        Callback = function()
+            tp(game:GetService("Workspace").Visual.Hitbox[v .. " Spawn Model"].Hitbox.Position)
+        end
+    })
+
+    Page3.Button({
+        Text = v,
+        Callback = function()
+            local base = getbase(v)
+            tp(base["Shop Keeper"].HumanoidRootPart.Position)
+        end
+    })
+end
+
+
+-- > Hitbox
+Page4.Toggle({
+    Text = "Toggle Hitbox Expander",
+    Callback = function(value)
+        hitbox.Toggle = value
+    end
+})
+
+Page4.Slider({
+    Text = "HitBox Size",
+    Callback = function(value)
+        hitbox.Size = value
+    end,
+    Min = 5,
+    Max = 30,
+    Def = 18
+})
+
+Page4.Slider({
+    Text = "HitBox Transparency",
+    Callback = function(value)
+        if value ~= 10 then
+            hitbox.Transparency = tonumber("0." .. value)
+        else
+            hitbox.Transparency = value
+        end
+    end,
+    Min = 0,
+    Max = 10,
+    Def = 5
+})
+
+Page4.ColorPicker({
+    Text = "Hitbox Color",
+    Default = Color3.fromRGB(240, 123, 214),
+    Callback = function(value)
+        hitbox.Color = value
+    end
+})
