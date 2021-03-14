@@ -46,7 +46,7 @@ local UI = Material.Load({
      Title = "By Blockman",
      Style = 32,
      SizeX = 400,
-     SizeY = 240,
+     SizeY = 200,
      Theme = "Light"
 })
 
