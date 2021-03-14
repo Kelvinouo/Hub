@@ -1,4 +1,7 @@
 local plr = game.Players.LocalPlayer
+local mt = getrawmetatable(game)
+setreadonly(mt,false)
+local old = mt.__namecall
 local shit = {
     "ManageSword",
     "Announce"
