@@ -30,8 +30,7 @@ end)
 print("Bypassing AC")
 repeat
     wait()
-    plr.Character.Humanoid.WalkSpeed = math.random(1,2)
+    plr.Character.Humanoid.WalkSpeed = math.random(15,16)
 until bd == true
 print("Boom bypassed lol trash AC")
 plr.Character.Humanoid.WalkSpeed = 14
- 
