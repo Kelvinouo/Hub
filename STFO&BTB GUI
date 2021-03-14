@@ -1,0 +1,92 @@
+-- > Locals
+local TweenService = game:GetService("TweenService")
+local ReplicatedFirst = game:GetService("ReplicatedFirst")
+local plr = game.Players.LocalPlayer
+local bd = false
+local autoset = {
+    ["WalkSpeed"] = {0, 32, 16},
+    ["Sword Size"] = {5, 20, 10},
+    ["Toggle Reach"] = false,
+    ["Toggle WS"] = false
+}
+
+-- > Bypass
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Kelvinouo/Hub/master/STFO%26BTB%20Bypass%20AC", true))()
+
+-- > Function
+function reach(size)
+    plr.Character:WaitForChild("Humanoid"):UnequipTools()
+    local tool = plr.Backpack:FindFirstChildOfClass("Tool")
+    if tool.Handle:FindFirstChild("SelectionBox") == nil then
+        a=Instance.new("SelectionBox",tool.Handle)
+        a.Adornee=tool.Handle
+    end
+    tool.Parent = plr.Backpack
+    tool.Handle.Size = Vector3.new(size,size,size)
+    tool.Handle.Massless = true
+    wait()
+    tool.Parent = plr.Character
+    wait()
+    tool:Activate()
+end
+
+-- > Connect
+plr.CharacterAdded:Connect(function()
+    local Humanoid = plr.Character:WaitForChild("Humanoid")
+    if autoset["Toggle WS"] then
+        Humanoid.WalkSpeed = autoset["WalkSpeed"][3]
+    end
+    reach(autoset["Sword Size"][3])
+end)
+
+-- > UI Lib
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+
+local UI = Material.Load({
+     Title = "By Blockman",
+     Style = 32,
+     SizeX = 400,
+     SizeY = 240,
+     Theme = "Light"
+})
+
+local Page = UI.New({
+    Title = "MAIN"
+})
+
+-- > Char
+Page.Toggle({
+    Text = "Keep WS when respawn",
+    Callback = function(value)
+        autoset["Toggle WS"] = value
+    end,
+})
+
+Page.Toggle({
+    Text = "Keep reach when respawn",
+    Callback = function(value)
+        autoset["Toggle Reach"] = value
+    end,
+})
+
+Page.Slider({
+    Text = "Reach Size",
+    Callback = function(value)
+        autoset["Sword Size"][3] = value
+        reach(value)
+    end,
+    Min = autoset["Sword Size"][1],
+    Max = autoset["Sword Size"][2],
+    Def = autoset["Sword Size"][3]
+})
+
+Page.Slider({
+    Text = "WalkSpeed",
+    Callback = function(value)
+        autoset["WalkSpeed"][3] = value
+        plr.Character.Humanoid.WalkSpeed = value
+    end,
+    Min = autoset["WalkSpeed"][1],
+    Max = autoset["WalkSpeed"][2],
+    Def = autoset["WalkSpeed"][3]
+})
