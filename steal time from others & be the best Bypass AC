@@ -31,3 +31,4 @@ repeat
 until bd == true
 print("Boom bypassed lol trash AC")
 plr.Character.Humanoid.WalkSpeed = 14
+ 
