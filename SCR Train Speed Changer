@@ -1,1 +1,1 @@
-game.Players.LocalPlayer:Kick("\nPatched, wait for unpatch")
+game.Players.LocalPlayer:Kick("Patched, sorry")
