@@ -189,21 +189,6 @@ local function setspeed(speed)
     debug.setupvalue(closure, upvalueIndex, value)
 end
 
-coroutine.wrap(function() -- dont change anything in here
-    while wait() do
-        if game.Players.LocalPlayer.PlayerGui.MainGui.TrainHUD.MainFrame.Visible == false then
-            if settings.autoDrive then
-                LE:Fire({
-                    type = "display-message", 
-                    message = "Auto turn off auto drive due to player despawned",
-                    color = "red"
-                })
-            end
-            AD:SetState(false)
-        end
-    end
-end)()
-
 coroutine.wrap(function()
     while wait() do
         if settings.autoDrive then
