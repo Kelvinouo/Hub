@@ -1,3 +1,19 @@
+--[[
+
+
+
+
+
+
+shitty code style dont look at it
+
+
+
+
+
+
+
+]]
 -- // Locals
 local virtualUser = game:GetService("VirtualUser")
 local players = game:GetService("Players")
