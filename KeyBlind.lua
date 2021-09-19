@@ -1,3 +1,4 @@
+local UIS = game:GetService("UserInputService")
 local Destroy = false
 local keyblinds = {
     -- {Name = "Name", Key = Enum.KeyCode, CallBack = function}
