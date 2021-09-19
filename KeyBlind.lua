@@ -15,14 +15,17 @@ UIS.InputBegan:Connect(function(input, gameProcessedEvent)
 end)
 
 return {
-  registerKey = function(name, key, callback)
-      table.insert(keyblinds, {
-          Name = name,
-          Key = key,
-          CallBack = callback
-      })
-  end,
-  Destroy = fucntion()
-      Destroy = true
-  end
+    RegisterKey = function(name, key, callback)
+        table.insert(keyblinds, {
+            Name = name,
+            Key = key,
+            CallBack = callback
+        })
+    end,
+    Destroy = function()
+        Destroy = true
+    end,
+    GetKeyBlinds = function()
+        return keyblinds
+    end
 }
