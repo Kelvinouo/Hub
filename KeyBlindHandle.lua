@@ -31,3 +31,17 @@ return {
         return keyblinds
     end
 }
+
+
+--[[
+
+local KeyBlindHandler = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kelvinouo/Hub/master/KeyBlindHandle.lua", true))()
+
+KeyBlindHandler.RegisterKey("RandomName", Enum.KeyCode.A, function()
+    print("Hello")
+end)
+KeyBlindHandler.RegisterKey("Destroy", Enum.KeyCode.M, function()
+    KeyBlindHandler.Destroy()
+end)
+
+]]
