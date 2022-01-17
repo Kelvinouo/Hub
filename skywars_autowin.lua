@@ -181,7 +181,7 @@ repeat
 until u >= 2
 coroutine.wrap(
     function()
-        while true do
+        for j = 1, 5 do
             game:GetService("ReplicatedStorage"):FindFirstChild("events-shared/events@GlobalEvents").UpdateActiveItemType:FireServer(
                 "BronzeSword"
             )
