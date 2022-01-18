@@ -1,4 +1,4 @@
-if game.GameId == 3258873704 then
+if game.PlaceId == 8542275097 then
     repeat
         wait()
     until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
