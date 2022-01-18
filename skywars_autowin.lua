@@ -8,7 +8,6 @@ game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, tru
 local a = queue_on_teleport or syn.queue_on_teleport
 local b = game.Players.LocalPlayer
 local c = game:GetService("TweenService")
-a([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kelvinouo/Hub/master/skywars_autowin.lua", true))()]])
 local d = Instance.new("ScreenGui")
 d.Name = "?"
 d.ResetOnSpawn = false
@@ -149,6 +148,10 @@ local function q(p)
     until IsAlive(p) == false or IsAlive(b) == false or p.Character.HumanoidRootPart.Position.Y < -5
     e("Killed " .. p.Name)
 end
+if game.PlaceVersion ~= 57 then
+    l("! Game Update Detected !", "Please wait me to check is there anything changed (Fern#5747)", 5)
+    return
+end
 game:GetService("ReplicatedStorage"):FindFirstChild("events-shared/events@GlobalEvents").ChestUpdated.OnClientEvent:Connect(
     function(r, s)
         for j, k in next, s do
@@ -164,7 +167,8 @@ repeat
     wait()
 until IsAlive(b)
 local t = tick()
-l("Autowin Started", "Made by Fern#5747 !! you dont need to put script to ur autoexec rn !!")
+l("Autowin Started", "Made by Fern#5747")
+a([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kelvinouo/Hub/master/skywars_autowin.lua", true))()]])
 local u = 0
 repeat
     for v, k in next, workspace.BlockContainer.Map.Chests:GetChildren() do
