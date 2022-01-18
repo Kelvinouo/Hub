@@ -2,8 +2,10 @@ if game.PlaceId == 8542275097 then
     repeat
         wait()
     until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
+    wait(1)
+else
+    return
 end
-wait(3)
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, true)
 local a = queue_on_teleport or syn.queue_on_teleport
 local b = game.Players.LocalPlayer
