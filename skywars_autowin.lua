@@ -2,7 +2,7 @@ if game.PlaceId == 8542275097 then
     repeat
         wait()
     until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
-    wait(1)
+    wait(2)
 else
     return
 end
@@ -151,7 +151,7 @@ local function r(q)
     until IsAlive(q) == false or IsAlive(b) == false or q.Character.HumanoidRootPart.Position.Y < -5
     f("Killed " .. q.Name)
 end
-if game.PlaceVersion ~= 57 then
+if game.PlaceVersion ~= 58 then
     m("! Game Update Detected !", "Please wait me to check is there anything changed (Fern#5747)", 5)
     return
 end
