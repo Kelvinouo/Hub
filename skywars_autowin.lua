@@ -151,7 +151,7 @@ local function r(q)
     until IsAlive(q) == false or IsAlive(b) == false or q.Character.HumanoidRootPart.Position.Y < -5
     f("Killed " .. q.Name)
 end
-if game.PlaceVersion ~= 58 then
+if game.PlaceVersion ~= 59 then
     m("! Game Update Detected !", "Please wait me to check is there anything changed (Fern#5747)", 5)
     return
 end
