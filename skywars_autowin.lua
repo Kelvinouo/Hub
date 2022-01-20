@@ -10,7 +10,7 @@ game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, tru
 local a = queue_on_teleport or syn.queue_on_teleport
 local b = game.Players.LocalPlayer
 local c = game:GetService("TweenService")
-local d = "0.5"
+local d = "0.5a"
 local e = Instance.new("ScreenGui")
 e.Name = "?"
 e.ResetOnSpawn = false
