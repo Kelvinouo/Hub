@@ -11,7 +11,7 @@ local a = game:GetService("ReplicatedStorage"):WaitForChild("events-shared/event
 local b = queue_on_teleport or syn.queue_on_teleport
 local c = game.Players.LocalPlayer
 local d = game:GetService("TweenService")
-local e = "0.5c"
+local e = "0.5d"
 local f = Instance.new("ScreenGui")
 f.Name = "?"
 f.ResetOnSpawn = false
@@ -170,13 +170,13 @@ function looptp(r)
     until IsAlive(r) == false or IsAlive(c) == false or r.Character.HumanoidRootPart.Position.Y < -5
     g("Killed " .. r.Name)
 end
-if game.PlaceVersion ~= 59 then
+if game.PlaceVersion ~= 60 then
     n("! Game Update Detected !", "Please wait me to check is there anything changed (Fern#5747)", 5)
     return
 end
 a.ChestUpdated.OnClientEvent:Connect(
     function(v, w)
-        for l, m in next, w do
+        for x, m in next, w do
             a.ChestUpdate:FireServer(v, m.Type, -m.Quantity)
         end
     end
@@ -184,21 +184,21 @@ a.ChestUpdated.OnClientEvent:Connect(
 repeat
     wait()
 until IsAlive(c)
-local x = tick()
+local y = tick()
 n("Autowin Started", "Made by Fern#5747 v" .. e)
 b([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kelvinouo/Hub/master/skywars_autowin.lua", true))()]])
-local y = 0
+local z = 0
 repeat
-    for z, m in next, workspace.BlockContainer.Map.Chests:GetChildren() do
+    for x, m in next, workspace.BlockContainer.Map.Chests:GetChildren() do
         if IsAlive(c) and m:FindFirstChild("PrimaryPart") then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = m.PrimaryPart.CFrame + Vector3.new(0, 5, 0)
             wait(0.1)
             a.ChestOpen:FireServer(m)
-            y = y + 1
+            z = z + 1
         end
     end
     wait()
-until y >= 2
+until z >= 2
 c.Character.Hitbox:Destroy()
 coroutine.wrap(
     function()
@@ -214,7 +214,7 @@ coroutine.wrap(
 )()
 game:GetService("RunService").Heartbeat:Connect(
     function()
-        for z, m in next, game.Players:GetPlayers() do
+        for x, m in next, game.Players:GetPlayers() do
             if m ~= c and IsAlive(m) and IsAlive(c) and magnitude(m, c, 1) < 10 then
                 a.PlayerMelee:FireServer(m)
             end
@@ -224,7 +224,7 @@ game:GetService("RunService").Heartbeat:Connect(
 local A = 0
 repeat
     A = 0
-    for z, m in next, game.Players:GetPlayers() do
+    for x, m in next, game.Players:GetPlayers() do
         if m ~= c and IsAlive(m) then
             A = A + 1
             looptp(m)
@@ -232,5 +232,5 @@ repeat
     end
     wait()
 until A == 0
-n("Game Ended", "Took - " .. math.floor(tick() - x) .. "s")
+n("Game Ended", "Took - " .. math.floor(tick() - y) .. "s")
 a.UpdateMatchmakingStatus:FireServer(true)
