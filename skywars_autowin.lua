@@ -2,7 +2,7 @@ if game.PlaceId == 8542275097 then
     repeat
         wait()
     until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
-    wait(2)
+    wait(1)
 else
     return
 end
@@ -11,7 +11,7 @@ local a = game:GetService("ReplicatedStorage"):WaitForChild("events-shared/event
 local b = queue_on_teleport or syn.queue_on_teleport
 local c = game.Players.LocalPlayer
 local d = game:GetService("TweenService")
-local e = "0.5b"
+local e = "0.5c"
 local f = Instance.new("ScreenGui")
 f.Name = "?"
 f.ResetOnSpawn = false
@@ -233,4 +233,4 @@ repeat
     wait()
 until A == 0
 n("Game Ended", "Took - " .. math.floor(tick() - x) .. "s")
-game:GetService("ReplicatedStorage")["events-shared/events@GlobalEvents"].UpdateMatchmakingStatus:FireServer(true)
+a.UpdateMatchmakingStatus:FireServer(true)
