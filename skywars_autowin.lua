@@ -11,7 +11,7 @@ local a = game:GetService("ReplicatedStorage"):WaitForChild("events-shared/event
 local b = queue_on_teleport or syn.queue_on_teleport
 local c = game.Players.LocalPlayer
 local d = game:GetService("TweenService")
-local e = "0.5d"
+local e = "0.5e"
 local f = Instance.new("ScreenGui")
 f.Name = "?"
 f.ResetOnSpawn = false
@@ -170,7 +170,7 @@ function looptp(r)
     until IsAlive(r) == false or IsAlive(c) == false or r.Character.HumanoidRootPart.Position.Y < -5
     g("Killed " .. r.Name)
 end
-if game.PlaceVersion ~= 60 then
+if game.PlaceVersion ~= 61 then
     n("! Game Update Detected !", "Please wait me to check is there anything changed (Fern#5747)", 5)
     return
 end
