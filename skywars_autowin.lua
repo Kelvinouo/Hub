@@ -170,7 +170,7 @@ function looptp(r)
     until IsAlive(r) == false or IsAlive(c) == false or r.Character.HumanoidRootPart.Position.Y < -5
     g("Killed " .. r.Name)
 end
-if game.PlaceVersion ~= 62 then
+if game.PlaceVersion ~= 63 then
     n("! Game Update Detected !", "Please wait me to check is there anything changed (Fern#5747)", 5)
     return
 end
