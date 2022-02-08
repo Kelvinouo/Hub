@@ -2,7 +2,6 @@ if game.PlaceId == 8542275097 then
     repeat
         wait()
     until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
-    wait(1)
 else
     return
 end
@@ -91,4 +90,4 @@ local function n(o, h, i)
         end
     )()
 end
-n("! Game Update Detected !", "Please wait me to check is there anything changed (Fern#5747)", 5)
+n("! Game Update Detected !", "Please wait me to check is there anything changed (Fern#5747 https://discord.gg/VDuRyuZ)", 5)
