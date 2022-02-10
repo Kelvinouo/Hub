@@ -6,284 +6,281 @@ else
     return
 end
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, true)
-local a
-local b = queue_on_teleport or syn.queue_on_teleport
-local c = game.Players.LocalPlayer
-local d = game:GetService("TweenService")
-local e = "0.6b - 10/2"
-local f = {FULLREMOTENAMES = {}, Remotes = {}}
-local g = Instance.new("ScreenGui")
-g.Name = "?"
-g.ResetOnSpawn = false
-g.Parent = game:GetService("CoreGui")
-local function h(i, j)
-    local k = j or 3
+local a = queue_on_teleport or syn.queue_on_teleport
+local b = game.Players.LocalPlayer
+local c = game:GetService("TweenService")
+local d = "0.6c - 10/2"
+local e = {
+    FULLREMOTENAMES = {},
+    Remotes = {},
+    Events = require(game.Players.LocalPlayer.PlayerScripts.TS.events).Events
+}
+local f = Instance.new("ScreenGui")
+f.Name = "?"
+f.ResetOnSpawn = false
+f.Parent = game:GetService("CoreGui")
+local function g(h, i)
+    local j = i or 3
     coroutine.wrap(
         function()
-            local l = Instance.new("TextLabel")
-            l.Parent = g
-            l.AnchorPoint = Vector2.new(0.5, 0.5)
-            l.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            l.BorderSizePixel = 0
-            l.Position = UDim2.new(0.5, 0, 0.800000012, 0)
-            l.Size = UDim2.new(0, 0, 0, 30)
-            l.Font = Enum.Font.SourceSansLight
-            l.TextColor3 = Color3.fromRGB(0, 0, 0)
-            l.TextSize = 20.000
-            for m = 1, #i + 1 do
-                local n =
+            local k = Instance.new("TextLabel")
+            k.Parent = f
+            k.AnchorPoint = Vector2.new(0.5, 0.5)
+            k.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            k.BorderSizePixel = 0
+            k.Position = UDim2.new(0.5, 0, 0.800000012, 0)
+            k.Size = UDim2.new(0, 0, 0, 30)
+            k.Font = Enum.Font.SourceSansLight
+            k.TextColor3 = Color3.fromRGB(0, 0, 0)
+            k.TextSize = 20.000
+            for l = 1, #h + 1 do
+                local m =
                     game:GetService("TextService"):GetTextSize(
-                    i:sub(1, m),
+                    h:sub(1, l),
                     20,
                     Enum.Font.SourceSansLight,
                     Vector2.new(9e9, 9e9)
                 )
-                l.Text = i:sub(1, m)
-                d:Create(l, TweenInfo.new(0.01), {Size = UDim2.new(0, n.x + 30, 0, n.y + 10)}):Play()
+                k.Text = h:sub(1, l)
+                c:Create(k, TweenInfo.new(0.01), {Size = UDim2.new(0, m.x + 30, 0, m.y + 10)}):Play()
                 wait(0.03)
             end
-            wait(k)
-            l.Text = ""
-            d:Create(l, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 0)}):Play()
+            wait(j)
+            k.Text = ""
+            c:Create(k, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 0)}):Play()
             wait(0.2)
-            l:Destroy()
+            k:Destroy()
         end
     )()
 end
-local function o(p, i, j)
+local function n(o, h, i)
     coroutine.wrap(
         function()
-            local q = Instance.new("TextLabel")
-            q.Parent = g
+            local p = Instance.new("TextLabel")
+            p.Parent = f
+            p.AnchorPoint = Vector2.new(0.5, 0.5)
+            p.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            p.BorderSizePixel = 0
+            p.Position = UDim2.new(0.5, 0, 0.5, 0)
+            p.Size = UDim2.new(0, 0, 0, 30)
+            p.Font = Enum.Font.SourceSansLight
+            p.TextColor3 = Color3.fromRGB(0, 0, 0)
+            p.TextSize = 20.000
+            for l = 1, #o + 1 do
+                local m =
+                    game:GetService("TextService"):GetTextSize(
+                    o:sub(1, l),
+                    20,
+                    Enum.Font.SourceSansLight,
+                    Vector2.new(9e9, 9e9)
+                )
+                p.Text = o:sub(1, l)
+                c:Create(p, TweenInfo.new(0.01), {Size = UDim2.new(0, m.x + 30, 0, m.y + 10)}):Play()
+                wait(.03)
+            end
+            wait(0.1)
+            local q = Instance.new("Frame")
+            q.Name = "Line"
+            q.Parent = f
             q.AnchorPoint = Vector2.new(0.5, 0.5)
             q.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             q.BorderSizePixel = 0
             q.Position = UDim2.new(0.5, 0, 0.5, 0)
-            q.Size = UDim2.new(0, 0, 0, 30)
-            q.Font = Enum.Font.SourceSansLight
-            q.TextColor3 = Color3.fromRGB(0, 0, 0)
-            q.TextSize = 20.000
-            for m = 1, #p + 1 do
-                local n =
-                    game:GetService("TextService"):GetTextSize(
-                    p:sub(1, m),
-                    20,
-                    Enum.Font.SourceSansLight,
-                    Vector2.new(9e9, 9e9)
-                )
-                q.Text = p:sub(1, m)
-                d:Create(q, TweenInfo.new(0.01), {Size = UDim2.new(0, n.x + 30, 0, n.y + 10)}):Play()
-                wait(.03)
-            end
-            wait(0.1)
-            local r = Instance.new("Frame")
-            r.Name = "Line"
-            r.Parent = g
-            r.AnchorPoint = Vector2.new(0.5, 0.5)
-            r.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            r.BorderSizePixel = 0
-            r.Position = UDim2.new(0.5, 0, 0.5, 0)
-            r.Size = UDim2.new(0, 3, 0, 10)
-            local l = Instance.new("TextLabel")
-            l.Parent = g
-            l.AnchorPoint = Vector2.new(0.5, 0.5)
-            l.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            l.BorderSizePixel = 0
-            l.Position = UDim2.new(0.5, 0, 0.5, 0)
-            l.Size = UDim2.new(0, 0, 0, 30)
-            l.Font = Enum.Font.SourceSansLight
-            l.TextColor3 = Color3.fromRGB(0, 0, 0)
-            l.TextSize = 20.000
-            d:Create(q, TweenInfo.new(0.4), {Position = q.Position - UDim2.new(0, 0, 0, 50)}):Play()
+            q.Size = UDim2.new(0, 3, 0, 10)
+            local k = Instance.new("TextLabel")
+            k.Parent = f
+            k.AnchorPoint = Vector2.new(0.5, 0.5)
+            k.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            k.BorderSizePixel = 0
+            k.Position = UDim2.new(0.5, 0, 0.5, 0)
+            k.Size = UDim2.new(0, 0, 0, 30)
+            k.Font = Enum.Font.SourceSansLight
+            k.TextColor3 = Color3.fromRGB(0, 0, 0)
+            k.TextSize = 20.000
+            c:Create(p, TweenInfo.new(0.4), {Position = p.Position - UDim2.new(0, 0, 0, 50)}):Play()
             wait(0.04)
-            d:Create(r, TweenInfo.new(0.4), {Size = UDim2.new(0, 3, 0, 20)}):Play()
-            r.Position = r.Position - UDim2.new(0, 0, 0, 25)
-            r.Visible = true
+            c:Create(q, TweenInfo.new(0.4), {Size = UDim2.new(0, 3, 0, 20)}):Play()
+            q.Position = q.Position - UDim2.new(0, 0, 0, 25)
+            q.Visible = true
             wait(0.1)
-            for m = 1, #i + 1 do
-                local n =
+            for l = 1, #h + 1 do
+                local m =
                     game:GetService("TextService"):GetTextSize(
-                    i:sub(1, m),
+                    h:sub(1, l),
                     20,
                     Enum.Font.SourceSansLight,
                     Vector2.new(9e9, 9e9)
                 )
-                l.Text = i:sub(1, m)
-                d:Create(l, TweenInfo.new(0.01), {Size = UDim2.new(0, n.x + 30, 0, n.y + 10)}):Play()
+                k.Text = h:sub(1, l)
+                c:Create(k, TweenInfo.new(0.01), {Size = UDim2.new(0, m.x + 30, 0, m.y + 10)}):Play()
                 wait(.05)
             end
-            j = j or 3
-            wait(j)
-            q.Text = ""
-            l.Text = ""
-            d:Create(q, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 0)}):Play()
-            d:Create(l, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 0)}):Play()
-            d:Create(r, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 0)}):Play()
+            i = i or 3
+            wait(i)
+            p.Text = ""
+            k.Text = ""
+            c:Create(p, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 0)}):Play()
+            c:Create(k, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 0)}):Play()
+            c:Create(q, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 0)}):Play()
             wait(0.2)
+            p:Destroy()
+            k:Destroy()
             q:Destroy()
-            l:Destroy()
-            r:Destroy()
         end
     )()
 end
-function getRemoteName(s)
-    local t = {}
+function getRemoteName(r)
+    local s = {}
     pcall(
         function()
-            local u = debug.getconstants(s)
-            for m = 1, #u do
-                local n = u[m]
-                if typeof(n) == "string" and table.find(f.FULLREMOTENAMES, n) then
-                    table.insert(t, a[n])
+            local t = debug.getconstants(r)
+            for l = 1, #t do
+                local m = t[l]
+                if typeof(m) == "string" and table.find(e.FULLREMOTENAMES, m) then
+                    table.insert(s, e.Events[m])
                 end
             end
         end
     )
-    return #t > 1 and t or #t == 1 and t[1] or nil
+    return #s > 1 and s or #s == 1 and s[1] or nil
 end
-function hasItem(v)
-    return f.inventoryController.hasItem(nil, v)
+function hasItem(u)
+    return e.inventoryController.hasItem(nil, u)
 end
 function getHoldItem()
-    local w = f.HotbarController:getHeldItemInfo()
-    return w and w.Name or nil
+    local v = e.HotbarController:getHeldItemInfo()
+    return v and v.Name or nil
 end
-function IsAlive(x)
+function IsAlive(w)
     if
-        x.Character and x.Character:FindFirstChild("HumanoidRootPart") and x.Character:FindFirstChild("Humanoid") and
-            x.Character.Humanoid.Health > 0
+        w.Character and w.Character:FindFirstChild("HumanoidRootPart") and w.Character:FindFirstChild("Humanoid") and
+            w.Character.Humanoid.Health > 0
      then
         return true
     end
     return false
 end
-function magnitude(y, z, A)
-    if typeof(y) == "Instance" and A then
+function magnitude(x, y, z)
+    if typeof(x) == "Instance" and z then
+        x = x.Character.HumanoidRootPart.Position
+    end
+    if typeof(y) == "Instance" and z then
         y = y.Character.HumanoidRootPart.Position
     end
-    if typeof(z) == "Instance" and A then
-        z = z.Character.HumanoidRootPart.Position
+    if typeof(x) == "Instance" and not z then
+        x = x.Position
     end
-    if typeof(y) == "Instance" and not A then
+    if typeof(y) == "Instance" and not z then
         y = y.Position
     end
-    if typeof(z) == "Instance" and not A then
-        z = z.Position
+    if typeof(x) == "CFrame" then
+        x = x.p
     end
     if typeof(y) == "CFrame" then
         y = y.p
     end
-    if typeof(z) == "CFrame" then
-        z = z.p
-    end
-    return (y - z).magnitude
+    return (x - y).magnitude
 end
-function looptp(x)
+function looptp(w)
     repeat
-        if IsAlive(x) and IsAlive(c) then
+        if IsAlive(w) and IsAlive(b) then
             game:GetService("RunService").Heartbeat:Wait()
             game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-            if x and x.Character and x.Character:FindFirstChild("HumanoidRootPart") then
-                c.Character.HumanoidRootPart.CFrame =
-                    x.Character.HumanoidRootPart.CFrame + x.Character.HumanoidRootPart.CFrame.LookVector * -3 -
+            if w and w.Character and w.Character:FindFirstChild("HumanoidRootPart") then
+                b.Character.HumanoidRootPart.CFrame =
+                    w.Character.HumanoidRootPart.CFrame + w.Character.HumanoidRootPart.CFrame.LookVector * -3 -
                     Vector3.new(0, 6, 0)
             end
         end
-    until IsAlive(x) == false or IsAlive(c) == false or x.Character.HumanoidRootPart.Position.Y < -5
-    h("Killed " .. x.Name)
+    until IsAlive(w) == false or IsAlive(b) == false or w.Character.HumanoidRootPart.Position.Y < -5
+    g("Killed " .. w.Name)
 end
 if game.PlaceVersion ~= 68 then
-    o(
+    n(
         "! Game Update Detected !",
         "Please wait me to check is there anything changed (Fern#5747 https://discord.gg/VDuRyuZ)",
         5
     )
     return
 end
-for m, n in next, getgc(true) do
-    if typeof(n) == "table" then
-        for B, C in next, n do
-            if typeof(B) == "string" and (string.find(B, "Controller") or string.find(B, "Util")) then
-                f[B] = n[B]
+for l, m in next, getgc(true) do
+    if typeof(m) == "table" then
+        for A, B in next, m do
+            if typeof(A) == "string" and (string.find(A, "Controller") or string.find(A, "Util")) then
+                e[A] = m[A]
             end
         end
     end
 end
-for m, n in next, require(game.Players.LocalPlayer.PlayerScripts.TS.events).Events do
-    table.insert(f.FULLREMOTENAMES, m)
+for l, m in next, e.Events do
+    table.insert(e.FULLREMOTENAMES, l)
 end
-for m, n in next, game.ReplicatedStorage:GetDescendants() do
-    if table.find(f.FULLREMOTENAMES, n.Name) then
-        a = n.Parent
-        break
-    end
-end
-for m, n in next, f do
-    if typeof(n) == "table" then
-        for B, C in next, n do
-            local D = getRemoteName(C)
-            if D then
-                if not f.Remotes[m] then
-                    f.Remotes[m] = {}
+for l, m in next, e do
+    if typeof(m) == "table" then
+        for A, B in next, m do
+            local C = getRemoteName(B)
+            if C then
+                if not e.Remotes[l] then
+                    e.Remotes[l] = {}
                 end
-                f.Remotes[m][B] = D
+                e.Remotes[l][A] = C
             end
         end
     end
 end
-f.Remotes["ChestController"]["onStart"].OnClientEvent:Connect(
-    function(E, t)
-        for F, n in next, t do
-            f.Remotes["ChestController"]["updateChest"]:FireServer(E, n.Type, -n.Quantity)
+e.Remotes["ChestController"]["onStart"]:connect(
+    function(D, s)
+        for E, m in next, s do
+            e.Remotes["ChestController"]["updateChest"]:fire(D, m.Type, -m.Quantity)
         end
     end
 )
 repeat
     wait()
-until IsAlive(c)
-local G = tick()
-o("Autowin Started", "Made by Fern#5747 v" .. e)
-b([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kelvinouo/Hub/master/skywars_autowin.lua", true))()]])
-local D = 0
+until IsAlive(b)
+local F = tick()
+n("Autowin Started", "Made by Fern#5747 v" .. d)
+a([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kelvinouo/Hub/master/skywars_autowin.lua", true))()]])
+local C = 0
 repeat
-    for F, n in next, workspace.BlockContainer.Map.Chests:GetChildren() do
-        if IsAlive(c) and n:FindFirstChild("PrimaryPart") then
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = n.PrimaryPart.CFrame + Vector3.new(0, 5, 0)
+    for E, m in next, workspace.BlockContainer.Map.Chests:GetChildren() do
+        if IsAlive(b) and m:FindFirstChild("PrimaryPart") then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = m.PrimaryPart.CFrame + Vector3.new(0, 5, 0)
             wait(0.1)
-            f.Remotes["ChestController"]["openChest"]:FireServer(n)
-            D = D + 1
+            e.Remotes["ChestController"]["openChest"]:fire(m)
+            C = C + 1
         end
     end
     wait()
-until D >= 2
-c.Character.Hitbox:Destroy()
-local H = {"Bronze", "Iron", "Gold", "Diamond", "Emerald"}
+until C >= 2
+b.Character.Hitbox:Destroy()
+local G = {"Bronze", "Iron", "Gold", "Diamond", "Emerald"}
 game:GetService("RunService").Heartbeat:Connect(
     function()
-        for F, n in next, game.Players:GetPlayers() do
-            if n ~= c and IsAlive(n) and IsAlive(c) and magnitude(n, c, 1) < 10 then
-                local I = 1
-                for m, C in next, H do
-                    if hasItem(C .. "Sword") and m > I then
-                        I = m
+        for E, m in next, game.Players:GetPlayers() do
+            if m ~= b and IsAlive(m) and IsAlive(b) and magnitude(m, b, 1) < 10 then
+                local H = 1
+                for l, B in next, G do
+                    if hasItem(B .. "Sword") and l > H then
+                        H = l
                     end
                 end
-                f.Remotes["HotbarController"]["updateActiveItem"]:FireServer(H[I] .. "Sword")
-                f.Remotes["MeleeController"]["strikeMobile"]:FireServer(n)
+                e.Remotes["HotbarController"]["updateActiveItem"]:fire(G[H] .. "Sword")
+                e.Remotes["MeleeController"]["strikeMobile"]:fire(m)
             end
         end
     end
 )
-local J = 0
+local I = 0
 repeat
-    J = 0
-    for F, n in next, game.Players:GetPlayers() do
-        if n ~= c and IsAlive(n) then
-            J = J + 1
-            looptp(n)
+    I = 0
+    for E, m in next, game.Players:GetPlayers() do
+        if m ~= b and IsAlive(m) then
+            I = I + 1
+            looptp(m)
         end
     end
     wait()
-until J == 0
-o("Game Ended", "Took - " .. math.floor(tick() - G) .. "s")
-f.Remotes["MatchmakingController"]["joinQueue"]:FireServer(true)
+until I == 0
+n("Game Ended", "Took - " .. math.floor(tick() - F) .. "s")
+e.Remotes["MatchmakingController"]["joinQueue"]:fire(true)
