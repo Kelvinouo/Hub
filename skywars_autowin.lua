@@ -6,11 +6,11 @@ else
     return
 end
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, true)
-local a = game:GetService("ReplicatedStorage"):WaitForChild("events-4gb")
+local a
 local b = queue_on_teleport or syn.queue_on_teleport
 local c = game.Players.LocalPlayer
 local d = game:GetService("TweenService")
-local e = "0.6a - 9/2"
+local e = "0.6b - 10/2"
 local f = {FULLREMOTENAMES = {}, Remotes = {}}
 local g = Instance.new("ScreenGui")
 g.Name = "?"
@@ -144,51 +144,55 @@ end
 function hasItem(v)
     return f.inventoryController.hasItem(nil, v)
 end
-function IsAlive(w)
+function getHoldItem()
+    local w = f.HotbarController:getHeldItemInfo()
+    return w and w.Name or nil
+end
+function IsAlive(x)
     if
-        w.Character and w.Character:FindFirstChild("HumanoidRootPart") and w.Character:FindFirstChild("Humanoid") and
-            w.Character.Humanoid.Health > 0
+        x.Character and x.Character:FindFirstChild("HumanoidRootPart") and x.Character:FindFirstChild("Humanoid") and
+            x.Character.Humanoid.Health > 0
      then
         return true
     end
     return false
 end
-function magnitude(x, y, z)
-    if typeof(x) == "Instance" and z then
-        x = x.Character.HumanoidRootPart.Position
-    end
-    if typeof(y) == "Instance" and z then
+function magnitude(y, z, A)
+    if typeof(y) == "Instance" and A then
         y = y.Character.HumanoidRootPart.Position
     end
-    if typeof(x) == "Instance" and not z then
-        x = x.Position
+    if typeof(z) == "Instance" and A then
+        z = z.Character.HumanoidRootPart.Position
     end
-    if typeof(y) == "Instance" and not z then
+    if typeof(y) == "Instance" and not A then
         y = y.Position
     end
-    if typeof(x) == "CFrame" then
-        x = x.p
+    if typeof(z) == "Instance" and not A then
+        z = z.Position
     end
     if typeof(y) == "CFrame" then
         y = y.p
     end
-    return (x - y).magnitude
+    if typeof(z) == "CFrame" then
+        z = z.p
+    end
+    return (y - z).magnitude
 end
-function looptp(w)
+function looptp(x)
     repeat
-        if IsAlive(w) and IsAlive(c) then
+        if IsAlive(x) and IsAlive(c) then
             game:GetService("RunService").Heartbeat:Wait()
             game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-            if w and w.Character and w.Character:FindFirstChild("HumanoidRootPart") then
+            if x and x.Character and x.Character:FindFirstChild("HumanoidRootPart") then
                 c.Character.HumanoidRootPart.CFrame =
-                    w.Character.HumanoidRootPart.CFrame + w.Character.HumanoidRootPart.CFrame.LookVector * -3 -
+                    x.Character.HumanoidRootPart.CFrame + x.Character.HumanoidRootPart.CFrame.LookVector * -3 -
                     Vector3.new(0, 6, 0)
             end
         end
-    until IsAlive(w) == false or IsAlive(c) == false or w.Character.HumanoidRootPart.Position.Y < -5
-    h("Killed " .. w.Name)
+    until IsAlive(x) == false or IsAlive(c) == false or x.Character.HumanoidRootPart.Position.Y < -5
+    h("Killed " .. x.Name)
 end
-if game.PlaceVersion ~= 65 then
+if game.PlaceVersion ~= 68 then
     o(
         "! Game Update Detected !",
         "Please wait me to check is there anything changed (Fern#5747 https://discord.gg/VDuRyuZ)",
@@ -198,9 +202,9 @@ if game.PlaceVersion ~= 65 then
 end
 for m, n in next, getgc(true) do
     if typeof(n) == "table" then
-        for A, B in next, n do
-            if typeof(A) == "string" and (string.find(A, "Controller") or string.find(A, "Util")) then
-                f[A] = n[A]
+        for B, C in next, n do
+            if typeof(B) == "string" and (string.find(B, "Controller") or string.find(B, "Util")) then
+                f[B] = n[B]
             end
         end
     end
@@ -208,72 +212,78 @@ end
 for m, n in next, require(game.Players.LocalPlayer.PlayerScripts.TS.events).Events do
     table.insert(f.FULLREMOTENAMES, m)
 end
+for m, n in next, game.ReplicatedStorage:GetDescendants() do
+    if table.find(f.FULLREMOTENAMES, n.Name) then
+        a = n.Parent
+        break
+    end
+end
 for m, n in next, f do
     if typeof(n) == "table" then
-        for A, B in next, n do
-            local C = getRemoteName(B)
-            if C then
+        for B, C in next, n do
+            local D = getRemoteName(C)
+            if D then
                 if not f.Remotes[m] then
                     f.Remotes[m] = {}
                 end
-                f.Remotes[m][A] = C
+                f.Remotes[m][B] = D
             end
         end
     end
 end
 f.Remotes["ChestController"]["onStart"].OnClientEvent:Connect(
-    function(D, t)
-        for E, n in next, t do
-            f.Remotes["ChestController"]["updateChest"]:FireServer(D, n.Type, -n.Quantity)
+    function(E, t)
+        for F, n in next, t do
+            f.Remotes["ChestController"]["updateChest"]:FireServer(E, n.Type, -n.Quantity)
         end
     end
 )
 repeat
     wait()
 until IsAlive(c)
-local F = tick()
+local G = tick()
 o("Autowin Started", "Made by Fern#5747 v" .. e)
 b([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kelvinouo/Hub/master/skywars_autowin.lua", true))()]])
-local C = 0
+local D = 0
 repeat
-    for E, n in next, workspace.BlockContainer.Map.Chests:GetChildren() do
+    for F, n in next, workspace.BlockContainer.Map.Chests:GetChildren() do
         if IsAlive(c) and n:FindFirstChild("PrimaryPart") then
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = n.PrimaryPart.CFrame + Vector3.new(0, 5, 0)
             wait(0.1)
             f.Remotes["ChestController"]["openChest"]:FireServer(n)
-            C = C + 1
+            D = D + 1
         end
     end
     wait()
-until C >= 2
+until D >= 2
 c.Character.Hitbox:Destroy()
-local G = {"Bronze", "Iron", "Gold", "Diamond", "Emerald"}
+local H = {"Bronze", "Iron", "Gold", "Diamond", "Emerald"}
 game:GetService("RunService").Heartbeat:Connect(
     function()
-        for E, n in next, game.Players:GetPlayers() do
+        for F, n in next, game.Players:GetPlayers() do
             if n ~= c and IsAlive(n) and IsAlive(c) and magnitude(n, c, 1) < 10 then
-                local H = 1
-                for m, B in next, G do
-                    if hasItem(B .. "Sword") and m > H then
-                        H = m
+                local I = 1
+                for m, C in next, H do
+                    if hasItem(C .. "Sword") and m > I then
+                        I = m
                     end
                 end
-                f.Remotes["HotbarController"]["updateActiveItem"]:FireServer(G[H] .. "Sword")
+                f.Remotes["HotbarController"]["updateActiveItem"]:FireServer(H[I] .. "Sword")
                 f.Remotes["MeleeController"]["strikeMobile"]:FireServer(n)
             end
         end
     end
 )
-local I = 0
+local J = 0
 repeat
-    I = 0
-    for E, n in next, game.Players:GetPlayers() do
+    J = 0
+    for F, n in next, game.Players:GetPlayers() do
         if n ~= c and IsAlive(n) then
-            I = I + 1
+            J = J + 1
             looptp(n)
         end
     end
     wait()
-until I == 0
-o("Game Ended", "Took - " .. math.floor(tick() - F) .. "s")
+until J == 0
+o("Game Ended", "Took - " .. math.floor(tick() - G) .. "s")
 f.Remotes["MatchmakingController"]["joinQueue"]:FireServer(true)
