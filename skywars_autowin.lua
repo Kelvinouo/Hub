@@ -9,7 +9,7 @@ game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, tru
 local a = queue_on_teleport or syn.queue_on_teleport
 local b = game.Players.LocalPlayer
 local c = game:GetService("TweenService")
-local d = "0.7a - 16/2"
+local d = "0.7b - 16/2"
 local e = {
     FULLREMOTENAMES = {},
     Remotes = {},
@@ -195,7 +195,7 @@ function looptp(w)
     until IsAlive(w) == false or IsAlive(b) == false or w.Character.HumanoidRootPart.Position.Y < -5
     g("Killed " .. w.Name)
 end
-if game.PlaceVersion ~= 76 and game.PlaceId == 8542275097 or game.PlaceVersion ~= 17 and game.PlaceId == 8592115909 then
+if game.PlaceVersion ~= 77 and game.PlaceId == 8542275097 or game.PlaceVersion ~= 17 and game.PlaceId == 8592115909 then
     n(
         "! Game Update Detected !",
         "Please wait me to check is there anything changed (Fern#5747 https://discord.gg/VDuRyuZ)",
