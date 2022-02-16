@@ -1,4 +1,4 @@
-if game.PlaceId == 8542275097 then
+if game.PlaceId == 8542275097 or game.PlaceId == 8592115909 then
     repeat
         wait()
     until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
@@ -9,7 +9,7 @@ game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, tru
 local a = queue_on_teleport or syn.queue_on_teleport
 local b = game.Players.LocalPlayer
 local c = game:GetService("TweenService")
-local d = "0.6c - 10/2"
+local d = "0.6d - 16/2"
 local e = {
     FULLREMOTENAMES = {},
     Remotes = {},
@@ -195,7 +195,7 @@ function looptp(w)
     until IsAlive(w) == false or IsAlive(b) == false or w.Character.HumanoidRootPart.Position.Y < -5
     g("Killed " .. w.Name)
 end
-if game.PlaceVersion ~= 68 then
+if game.PlaceVersion ~= 71 and game.PlaceId == 8542275097 or game.PlaceVersion ~= 17 and game.PlaceId == 8592115909 then
     n(
         "! Game Update Detected !",
         "Please wait me to check is there anything changed (Fern#5747 https://discord.gg/VDuRyuZ)",
@@ -254,7 +254,7 @@ repeat
     wait()
 until C >= 2
 b.Character.Hitbox:Destroy()
-local G = {"Bronze", "Iron", "Gold", "Diamond", "Emerald"}
+local G = {"Bronze", "Iron", "Gold", "Diamond", "Emerald", "Onyx"}
 game:GetService("RunService").Heartbeat:Connect(
     function()
         for E, m in next, game.Players:GetPlayers() do
