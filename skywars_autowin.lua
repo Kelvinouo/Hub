@@ -195,7 +195,7 @@ function looptp(w)
     until IsAlive(w) == false or IsAlive(b) == false or w.Character.HumanoidRootPart.Position.Y < -5
     g("Killed " .. w.Name)
 end
-if game.PlaceVersion ~= 80 and game.PlaceId == 8542275097 or game.PlaceVersion ~= 17 and game.PlaceId == 8592115909 then
+if game.PlaceVersion ~= 83 and game.PlaceId == 8542275097 or game.PlaceVersion ~= 17 and game.PlaceId == 8592115909 then
     n(
         "! Game Update Detected !",
         "Please wait me to check is there anything changed (Fern#5747 https://discord.gg/VDuRyuZ)",
